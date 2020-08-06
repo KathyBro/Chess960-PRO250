@@ -12,25 +12,19 @@ public class Board_Class { // Board class
 
 		Random rng = new Random();
 		int position = 1 + rng.nextInt(6);
-		
 
 		King_Class king_obj = new King_Class("white", 'k', "king");
-		Queen_Class queen_obj = new Queen_Class("white", 'q', "queen");
-		array_2d_piece[0][3] = king_obj; // white king and queen initialization
-		array_2d_piece[0][4] = queen_obj;
+		array_2d_piece[0][3] = king_obj; // white king initialization
 
 		King_Class black_king_obj = new King_Class("black", 'K', "king");
-		Queen_Class black_queen_obj = new Queen_Class("black", 'Q', "queen");
+		array_2d_piece[7][4] = black_king_obj; // black king initialization
 
-		array_2d_piece[7][4] = black_king_obj; // black king and queen initialization
-		array_2d_piece[7][3] = black_queen_obj;
-		
-		if(chess960)
-		{
+		if (chess960) {
 			array_2d_piece[0][position] = king_obj;
 			array_2d_piece[7][position] = black_king_obj;
 		}
 
+		//Pawns are the same set up for either version
 		for (int i = 0; i < 8; i++) {
 			Pawn_Class pawn_obj = new Pawn_Class("white", 'p', "pawn"); // white pawn
 			array_2d_piece[1][i] = pawn_obj;
@@ -41,36 +35,69 @@ public class Board_Class { // Board class
 			array_2d_piece[6][i] = pawn_obj;
 		}
 
-		for (int i = 0; i <= 7; i += 7) {
+		if (!chess960) { //If it isn't 960, set like normal chess
+
+			for (int i = 0; i <= 7; i += 7) {
+				Rook_Class rook_obj = new Rook_Class("white", 'r', "rook");
+				array_2d_piece[0][i] = rook_obj; // white Rook initialization
+			}
+
+			for (int i = 1; i <= 6; i += 5) {
+				Knight_Class knight_obj = new Knight_Class("white", 'n', "knight");
+				array_2d_piece[0][i] = knight_obj; // white knight initialization
+			}
+
+			for (int i = 2; i <= 5; i++) {
+				Bishop_Class bishop_obj = new Bishop_Class("white", 'b', "bishop");
+				array_2d_piece[0][i] = bishop_obj; // white bishop initialization
+			}
+
+			// black piece initialization
+
+			for (int i = 0; i <= 7; i += 7) {
+				Rook_Class rook_obj = new Rook_Class("black", 'R', "rook");
+				array_2d_piece[7][i] = rook_obj; // Rook initialization
+			}
+
+			for (int i = 1; i <= 6; i += 5) {
+				Knight_Class knight_obj = new Knight_Class("black", 'N', "knight");
+				array_2d_piece[7][i] = knight_obj; // black knight initialization
+			}
+
+			for (int i = 2; i <= 5; i++) {
+				Bishop_Class bishop_obj = new Bishop_Class("black", 'B', "bishop");
+				array_2d_piece[7][i] = bishop_obj; // black bishop initialization
+			}
+
+			Queen_Class queen_obj = new Queen_Class("white", 'q', "queen"); // white queen initialization
+			array_2d_piece[0][4] = queen_obj;
+
+			Queen_Class black_queen_obj = new Queen_Class("black", 'Q', "queen"); // black queen initialization
+			array_2d_piece[7][3] = black_queen_obj;
+		}
+		else if (chess960) //If it is chess960, then we'll need to do random positions
+		{
+			//We'll start with the rook because it's dependent on the king
+			
+			//to the right of the king
+			int newposition = rng.nextInt((7-position)) + position + 1;
+			
 			Rook_Class rook_obj = new Rook_Class("white", 'r', "rook");
-			array_2d_piece[0][i] = rook_obj; // white Rook initialization
-		}
-
-		for (int i = 1; i <= 6; i += 5) {
-			Knight_Class knight_obj = new Knight_Class("white", 'n', "knight");
-			array_2d_piece[0][i] = knight_obj; // white knight initialization
-		}
-
-		for (int i = 2; i <= 5; i++) {
-			Bishop_Class bishop_obj = new Bishop_Class("white", 'b', "bishop");
-			array_2d_piece[0][i] = bishop_obj; // white bishop initialization
-		}
-
-		// black piece initialization
-
-		for (int i = 0; i <= 7; i += 7) {
-			Rook_Class rook_obj = new Rook_Class("black", 'R', "rook");
-			array_2d_piece[7][i] = rook_obj; // Rook initialization
-		}
-
-		for (int i = 1; i <= 6; i += 5) {
-			Knight_Class knight_obj = new Knight_Class("black", 'N', "knight");
-			array_2d_piece[7][i] = knight_obj; // black knight initialization
-		}
-
-		for (int i = 2; i <= 5; i++) {
-			Bishop_Class bishop_obj = new Bishop_Class("black", 'B', "bishop");
-			array_2d_piece[7][i] = bishop_obj; // black bishop initialization
+			array_2d_piece[0][newposition] = rook_obj; // white Rook initialization
+			Rook_Class b_rook_obj = new Rook_Class("black", 'R', "rook");
+			array_2d_piece[7][newposition] = b_rook_obj; // Rook initialization
+			
+			//to the left of the king
+			newposition = rng.nextInt(position);
+			rook_obj = new Rook_Class("white", 'r', "rook");
+			array_2d_piece[0][newposition] = rook_obj; // white Rook initialization
+			b_rook_obj = new Rook_Class("black", 'R', "rook");
+			array_2d_piece[7][newposition] = b_rook_obj; // Rook initialization
+			
+			
+			//Next, we'll set bishops because they have specific rules as well.
+			
+			
 		}
 
 	}
