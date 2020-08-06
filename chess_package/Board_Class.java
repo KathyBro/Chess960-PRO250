@@ -96,10 +96,65 @@ public class Board_Class { // Board class
 			
 			
 			//Next, we'll set bishops because they have specific rules as well.
+			newposition = rng.nextInt(8);
 			
+			//We'll place them on an even space
+			boolean placed = false;
+			
+			while(!placed) {
+				if(array_2d_piece[7][newposition] == null) //This means that the position is open
+				{
+					if(newposition % 2 == 0) { //This tells us that it is an even space that is open that we can place the bishop on
+						
+						Bishop_Class bishop_obj = new Bishop_Class("white", 'b', "bishop");
+						array_2d_piece[0][newposition] = bishop_obj; // white bishop initialization
+						bishop_obj = new Bishop_Class("black", 'B', "bishop");
+						array_2d_piece[7][newposition] = bishop_obj; // black bishop initialization
+						placed = true;
+					}
+					else {
+						newposition = rng.nextInt(8);
+					}
+				}
+				else 
+				{ //It's not an even space and so we need to get an even position.
+					newposition = rng.nextInt(8);
+				}
+			}
+			
+			placed = false;
+			
+			//Now we need an odd space to place the bishops on
+			while(!placed) {
+				if(array_2d_piece[7][newposition] == null) //This means that the position is open
+				{
+					if(newposition % 2 == 1) { //This tells us that it is an odd space that is open that we can place the bishop on
+						
+						Bishop_Class bishop_obj = new Bishop_Class("white", 'b', "bishop");
+						array_2d_piece[0][newposition] = bishop_obj; // white bishop initialization
+						bishop_obj = new Bishop_Class("black", 'B', "bishop");
+						array_2d_piece[7][newposition] = bishop_obj; // black bishop initialization
+						placed = true;
+					}
+					else {
+						newposition = rng.nextInt(8);
+					}
+				}
+				else 
+				{ //It's not an odd space and so we need to get an even position.
+					newposition = rng.nextInt(8);
+				}
+			}
+			
+			//Now place the rest of the pieces
 			
 		}
 
+	}
+	
+	private void placePiece(Piece_Class piece)
+	{
+		
 	}
 
 	public Piece_Class get_loc_piece(int p, int q) { // method of location piece object to finding
