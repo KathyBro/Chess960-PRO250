@@ -14,10 +14,8 @@ public class Board_Class { // Board class
 		int position = 1 + rng.nextInt(6);
 
 		King_Class king_obj = new King_Class("white", 'k', "king");
-		array_2d_piece[0][3] = king_obj; // white king initialization
 
 		King_Class black_king_obj = new King_Class("black", 'K', "king");
-		array_2d_piece[7][4] = black_king_obj; // black king initialization
 
 		if (chess960) {
 			array_2d_piece[0][position] = king_obj;
@@ -36,6 +34,8 @@ public class Board_Class { // Board class
 		}
 
 		if (!chess960) { //If it isn't 960, set like normal chess
+			array_2d_piece[0][3] = king_obj; // white king initialization
+			array_2d_piece[7][4] = black_king_obj; // black king initialization
 
 			for (int i = 0; i <= 7; i += 7) {
 				Rook_Class rook_obj = new Rook_Class("white", 'r', "rook");
