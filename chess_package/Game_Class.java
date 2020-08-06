@@ -1,5 +1,8 @@
 package chess_package;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class Game_Class{
 	
@@ -113,6 +116,9 @@ public class Game_Class{
 	
 	public static void main(String arg[]){			//main method defined
 		
+		
+		//Decide how to set up board
+		int version = menu();
 	Board_Class board_obj=new Board_Class();
 	board_obj.set_chess_board();
 	System.out.println("Capital Letter Pieces Are Black: ");
@@ -126,13 +132,13 @@ public class Game_Class{
 		System.out.println();
 		System.out.println(board_obj.player_color+" Piece Turn -- ");
 		
-		System.out.println("Enter the position x1: ");
+		System.out.println("Enter the position of the piece you want to move x: ");
 		int x1=input.nextInt();
-		System.out.println("Enter the position y1: ");
+		System.out.println("Enter the position of the piece you want to move y: ");
 		int y1=input.nextInt();
-		System.out.println("Enter the position x2: ");
+		System.out.println("Enter the position of where you want to move it to x: ");
 		int x2=input.nextInt();
-		System.out.println("Enter the position y2: ");
+		System.out.println("Enter the position of where you want to move it to y: ");
 		int y2=input.nextInt();
 		Piece_Class pi=board_obj.get_loc_piece(x1, y1);
 		
@@ -205,5 +211,32 @@ public class Game_Class{
 	}
 		
 	}		//end of main method
+	
+	private static int menu() {
+		System.out.println("Welcome! How would you like to play chess?");
+		System.out.println("1. Original");
+		System.out.println("2. Chess960");
+		
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		int selectedValue = 0;
+		try {
+			String selection = reader.readLine();
+			
+			//Check if they entered anything
+			if(selection.trim().length() > 0)
+			{
+				//See if it's an int
+				selectedValue = Integer.parseInt(selection);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		catch (NumberFormatException n)
+		{
+			n.printStackTrace();
+		}
+		
+		return selectedValue;
+	}
 
 }		//end of game class
