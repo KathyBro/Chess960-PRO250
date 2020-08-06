@@ -1,6 +1,6 @@
 package chess_package;
 
-abstract class Piece_Class {
+public abstract class Piece_Class {
 	String color;
 	char symbol;
 	String name;

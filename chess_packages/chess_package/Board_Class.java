@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Board_Class { // Board class
 
-	static Piece_Class array_2d_piece[][] = new Piece_Class[8][8];
+	Piece_Class array_2d_piece[][] = new Piece_Class[8][8];
 
 	static String player_color = "black";
 

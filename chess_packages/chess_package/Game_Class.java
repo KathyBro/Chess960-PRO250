@@ -140,13 +140,13 @@ public class Game_Class{
 		System.out.println();
 		System.out.println(board_obj.player_color+" Piece Turn -- ");
 		
-		System.out.println("Enter the position of the piece you want to move x: ");
+		System.out.println("Enter the position of the piece you want to move (vertical): ");
 		int x1=input.nextInt();
-		System.out.println("Enter the position of the piece you want to move y: ");
+		System.out.println("Enter the position of the piece you want to move (horizontal): ");
 		int y1=input.nextInt();
-		System.out.println("Enter the position of where you want to move it to x: ");
+		System.out.println("Enter the position of where you want to move it to (vertical): ");
 		int x2=input.nextInt();
-		System.out.println("Enter the position of where you want to move it to y: ");
+		System.out.println("Enter the position of where you want to move it to (horizontal): ");
 		int y2=input.nextInt();
 		Piece_Class pi=board_obj.get_loc_piece(x1, y1);
 		
