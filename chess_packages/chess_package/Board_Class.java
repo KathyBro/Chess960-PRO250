@@ -14,7 +14,6 @@ public class Board_Class { // Board class
 		int position = 1 + rng.nextInt(6);
 
 		King_Class king_obj = new King_Class("white", 'k', "king");
-
 		King_Class black_king_obj = new King_Class("black", 'K', "king");
 
 		if (chess960) {
@@ -34,8 +33,10 @@ public class Board_Class { // Board class
 		}
 
 		if (!chess960) { //If it isn't 960, set like normal chess
+			king_obj = new King_Class("white", 'k', "king");
+			black_king_obj = new King_Class("black", 'K', "king");
 			array_2d_piece[0][3] = king_obj; // white king initialization
-			array_2d_piece[7][4] = black_king_obj; // black king initialization
+			array_2d_piece[7][3] = black_king_obj; // black king initialization
 
 			for (int i = 0; i <= 7; i += 7) {
 				Rook_Class rook_obj = new Rook_Class("white", 'r', "rook");
@@ -47,7 +48,7 @@ public class Board_Class { // Board class
 				array_2d_piece[0][i] = knight_obj; // white knight initialization
 			}
 
-			for (int i = 2; i <= 5; i++) {
+			for (int i = 2; i <= 5; i+=3) {
 				Bishop_Class bishop_obj = new Bishop_Class("white", 'b', "bishop");
 				array_2d_piece[0][i] = bishop_obj; // white bishop initialization
 			}
@@ -64,7 +65,7 @@ public class Board_Class { // Board class
 				array_2d_piece[7][i] = knight_obj; // black knight initialization
 			}
 
-			for (int i = 2; i <= 5; i++) {
+			for (int i = 2; i <= 5; i+=3) {
 				Bishop_Class bishop_obj = new Bishop_Class("black", 'B', "bishop");
 				array_2d_piece[7][i] = bishop_obj; // black bishop initialization
 			}
@@ -73,7 +74,7 @@ public class Board_Class { // Board class
 			array_2d_piece[0][4] = queen_obj;
 
 			Queen_Class black_queen_obj = new Queen_Class("black", 'Q', "queen"); // black queen initialization
-			array_2d_piece[7][3] = black_queen_obj;
+			array_2d_piece[7][4] = black_queen_obj;
 		}
 		else if (chess960) //If it is chess960, then we'll need to do random positions
 		{
