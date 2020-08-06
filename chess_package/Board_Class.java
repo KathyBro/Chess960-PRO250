@@ -146,14 +146,42 @@ public class Board_Class { // Board class
 				}
 			}
 			
-			//Now place the rest of the pieces
+			//Now place the rest of the pieces - knights and queens
+			Knight_Class knight_obj = new Knight_Class("white", 'n', "knight");
+			Knight_Class black_knight_obj = new Knight_Class("black", 'N', "knight");
+			placePiece(knight_obj, black_knight_obj);
+			
+			knight_obj = new Knight_Class("white", 'n', "knight");
+			black_knight_obj = new Knight_Class("black", 'N', "knight");
+			placePiece(knight_obj, black_knight_obj);
+			
+			Queen_Class queen_obj = new Queen_Class("white", 'q', "queen");
+			Queen_Class black_queen_obj = new Queen_Class("black", 'Q', "queen");
+			placePiece(queen_obj, black_queen_obj);
+			
 			
 		}
 
 	}
 	
-	private void placePiece(Piece_Class piece)
+	private void placePiece(Piece_Class white_piece, Piece_Class black_piece)
 	{
+		Random rng = new Random();
+		int newposition = rng.nextInt(8);
+		boolean placed = false;
+		
+		while(!placed)
+		{
+			if(array_2d_piece[0][newposition] == null)
+			{
+				array_2d_piece[0][newposition] = white_piece;
+				array_2d_piece[7][newposition] = black_piece;
+				placed = true;
+			}
+			else {
+				newposition = rng.nextInt(8);
+			}
+		}
 		
 	}
 
