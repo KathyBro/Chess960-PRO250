@@ -6,7 +6,7 @@ public class Board_Class   {		//Board class
 	
 	static String player_color="black";
 		
-		public  void set_chess_board(){	  //set the pieces in the board
+		public  void set_chess_board(boolean chess960){	  //set the pieces in the board
 			for(int i=0;i<8;i++){
 				Pawn_Class pawn_obj= new Pawn_Class("white",'p',"pawn");		//white pawn 
 				array_2d_piece[1][i]=pawn_obj;

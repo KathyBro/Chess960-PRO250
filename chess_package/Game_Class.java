@@ -120,7 +120,15 @@ public class Game_Class{
 		//Decide how to set up board
 		int version = menu();
 	Board_Class board_obj=new Board_Class();
-	board_obj.set_chess_board();
+	
+	if(version == 1)
+	{
+		board_obj.set_chess_board(false);
+	}
+	else if (version == 2)
+	{
+		board_obj.set_chess_board(true);
+	}
 	System.out.println("Capital Letter Pieces Are Black: ");
 	System.out.println("Small Letter Pieces Are White: ");
 	System.out.println();
@@ -218,22 +226,31 @@ public class Game_Class{
 		System.out.println("2. Chess960");
 		
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		boolean goodValue = false;
 		int selectedValue = 0;
-		try {
-			String selection = reader.readLine();
-			
-			//Check if they entered anything
-			if(selection.trim().length() > 0)
-			{
-				//See if it's an int
-				selectedValue = Integer.parseInt(selection);
+		
+		while (!goodValue) {
+			try {
+				String selection = reader.readLine();
+				
+				//Check if they entered anything
+				if(selection.trim().length() > 0)
+				{
+					//See if it's an int
+					selectedValue = Integer.parseInt(selection);
+					if (selectedValue == 2 || selectedValue == 1)
+					{
+						goodValue = true;
+					}
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		catch (NumberFormatException n)
-		{
-			n.printStackTrace();
+			catch (NumberFormatException n)
+			{
+				//n.printStackTrace();
+				System.out.println("Please select either 1 or 2.");
+			}
 		}
 		
 		return selectedValue;
